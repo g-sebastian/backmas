@@ -1,0 +1,988 @@
+*,
+padding *::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-font: 'SourceSans3-Regular', sans-serif, ;
+    --secondary-font: 'Roboto-Regular', sans-serif;
+    --body-font: 'Cabin-Regular', sans-serif;
+    --headings-font: 'SourceSans3-Regular', sans-serif, ;
+    --main-font-color-dark: #252525;
+    --secondary-font-color: #c11f2f;
+    --body-font-color: #515151;
+    --white-color: #fff;
+    --dark-bg: #121212;
+}
+
+@font-face {
+    font-family: 'SourceSans3-Regular';
+    font-display: swap;
+    src: url('fonts/SourceSans3/SourceSans3-Regular.woff2') format('woff2');
+    /* Weitere Stile oder Anpassungen hier */
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    font-display: swap;
+    src: url('fonts/Roboto/Roboto-Regular.woff2') format('woff2');
+    /* Weitere Stile oder Anpassungen hier */
+}
+
+@font-face {
+    font-family: 'Cabin-Regular';
+    font-display: swap;
+    src: url('fonts/Cabin/Cabin-Regular.woff2') format('woff2');
+    /* Weitere Stile oder Anpassungen hier */
+}
+
+html {
+    font-family: var(--body-font);
+    font-size: 10px;
+    color: var(--body-font-color);
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+section {
+    padding: 3.9rem 0;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 1.6rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 100%;
+    max-width: 122.5rem;
+    margin: 0 auto;
+    padding: 0 2.4rem;
+}
+
+/* HEADER */
+
+header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.navbar {
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--white-color);
+    letter-spacing: .1rem;
+    transition: color .4s;
+}
+
+.logo:hover {
+    color: var(--secondary-font-color);
+}
+
+.menu-toggle {
+    color: var(--white-color);
+    font-size: 2.2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 2.5rem;
+    cursor: pointer;
+    z-index: 1500;
+}
+
+.fa-times {
+    display: none;
+}
+
+.nav-list {
+    list-style: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    min-height: 100vh;
+    background-color: var(--main-font-color-dark);
+    padding: 4.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 1250;
+    transform: translateX(-100%);
+    transition: transform .5s;
+}
+
+.navbar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s;
+}
+
+.show .fa-times {
+    display: block;
+}
+
+.show .fa-bars {
+    display: none;
+}
+
+.show .nav-list {
+    transform: translateX(0);
+}
+
+.show .nav::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nav-item {
+    border-bottom: 2px solid rgba(255, 255, 255, .3);
+}
+
+.nav-link {
+    display: block;
+    color: var(--white-color);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: -2px;
+    transition: color .5s;
+}
+
+.nav-link:hover {
+    color: var(--secondary-font-color);
+}
+
+/* HERO SECTION*/
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: url("images/Brot_in_Ofen.jpg") center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.small-size-hero {
+    height: 20vh;
+    background-position: center 60%;
+    max-width: auto;
+    /* Stellen Sie sicher, dass das Bild die Container-Breite nicht überschreitet */
+    height: auto;
+    /* Behalten Sie das Seitenverhältnis des Bildes bei */
+}
+
+.headline {
+    font-family: var(--main-font);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--white-color);
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+    margin-right: -.5rem;
+    opacity: 0;
+    animation-name: scaleBigger;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+}
+
+h1.headline {
+    font-family: var(--secondary-font);
+    margin-bottom: 4rem;
+    font-weight: 400;
+    font-size: 3.8rem;
+    opacity: 0;
+    animation-name: scaleBigger;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+}
+
+.sub-headline {
+    font-size: 4.5rem;
+    font-family: var(--headings-font);
+    color: var(--secondary-font-color);
+    font-weight: 100;
+    line-height: .4;
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-delay: .5s;
+    margin-bottom: 2rem;
+}
+
+
+.btn {
+    display: inline-block;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background-color: var(--secondary-font-color);
+    color: var(--white-color);
+    padding: 2rem 3rem;
+    transition: all .4s;
+}
+
+.btn-primary-open {
+    color: var(--secondary-font-color);
+    padding: 2rem 3rem;
+    transition: all .4s;
+}
+
+.btn-primary:hover {
+    background-color: var(--white-color);
+    color: var(--secondary-font-color);
+}
+
+
+.Allergene {
+    font-size: 1.8rem;
+    /* Schriftgröße anpassen */
+    font-weight: bold;
+    color: var(--main-font-color-dark);
+    /* Farbe anpassen */
+    margin-top: 2rem;
+    /* Abstand nach oben anpassen */
+    margin-bottom: 1rem;
+    /* Abstand nach unten anpassen */
+    text-align: center;
+    /* Zentrieren des Texts */
+    padding: 1rem;
+    /* Innenabstand hinzufügen */
+    background-color: #f5f5f5;
+    /* Hintergrundfarbe anpassen */
+    border: 2px solid var(--main-font-color-dark);
+    /* Rand hinzufügen */
+    border-radius: 5px;
+    /* Rand abrunden */
+}
+
+
+
+
+/* STORY SECTION*/
+
+.global-headline {
+    margin-top: 3.9rem;
+    text-align: center;
+}
+
+.our-story .global-headline {
+    margin-top: 6.9rem;
+}
+
+.asterisk {
+    font-size: 1.2rem;
+    color: var(--body-font-color);
+    margin: 2.4rem 0;
+    opacity: 0;
+    animation-name: spin;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    animation-delay: .7s;
+}
+
+.headline-dark {
+    color: var(--main-font-color-dark);
+    letter-spacing: .7rem;
+    margin-right: -.7rem;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    /* Safari-spezifische Einstellung */
+}
+
+.headline-dark2 {
+    color: var(--main-font-color-dark);
+    letter-spacing: .7rem;
+    margin-right: -.7rem;
+    margin-top: 3rem;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    /* Safari-spezifische Einstellung */
+}
+
+
+.global-headline .sub-headline {
+    letter-spacing: -1px;
+    line-height: .42;
+}
+
+.row {
+    text-align: center;
+    padding: 3.5rem 0;
+}
+
+
+
+.description {
+    margin-bottom: 3rem;
+}
+
+.description p {
+    line-height: 1.6;
+    margin-bottom: 2.4rem;
+}
+
+.description2 p {
+    line-height: 2;
+    margin-bottom: 2.4rem;
+}
+
+.btn-secondary {
+    color: var(--secondary-font-color);
+    position: relative;
+    transition: color .5s;
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-font-color);
+    transition: background-color .5s;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: var(--main-font-color-dark);
+}
+
+.btn-secondary:hover::before,
+.btn-secondary:focus::before {
+    background-color: var(--main-font-color-dark);
+}
+
+/* ALWAYS FRESH */
+
+.always-fresh {
+    background: url("images/Brezenteiglinge.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.shared {
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* MENU SECTION */
+
+.image-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+}
+
+.menu .description {
+    padding-top: 3rem;
+    margin-bottom: 0;
+}
+
+#offen {
+    font-size: 3rem;
+    /* Passe die Schriftgröße nach Bedarf an */
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.image-container img {
+    max-width: 65%;
+    /* Stellen Sie sicher, dass das Bild die Container-Breite nicht überschreitet */
+    height: auto;
+    /* Behalten Sie das Seitenverhältnis des Bildes bei */
+}
+
+/* FOOTER */
+
+footer {
+    background-color: var(--dark-bg);
+    color: var(--white-color);
+    padding: 3.5rem 0 5rem;
+    position: relative;
+    text-align: center;
+}
+
+.back-to-top {
+    background-color: var(--dark-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: -3rem;
+    left: 50%;
+    width: 7rem;
+    height: 7rem;
+    transform: translateX(-50%);
+}
+
+.back-to-top i {
+    display: block;
+    color: var(--white-color);
+    font-size: 2rem;
+    padding: 2rem;
+    animation-name: showsUp;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.footer__content {
+    overflow: hidden;
+}
+
+.footer__content h4 {
+    font-size: 1.9rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 3rem;
+}
+
+.footer__content-about {
+    margin-bottom: 2.4rem;
+}
+
+.footer__content-about p {
+    line-height: 1.8;
+}
+
+/* Apply the same font and font color as the normal text */
+.footer__content a {
+    color: var(--white-color);
+    font-family: var(--body-font);
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+/* Apply animation to the link on hover */
+.footer__content a:hover {
+    color: var(--secondary-font-color);
+}
+
+#baecker-greimel-link {
+    font-size: 2.4rem;
+    /* Passen Sie die Schriftgröße nach Bedarf an */
+    color: var(--secondary-font-color);
+    /* Setzen Sie die ursprüngliche Textfarbe */
+    transition: color 0.5s;
+    /* Animation für die Farbänderung bei Hover */
+}
+
+#baecker-greimel-link:hover {
+    color: var(--white-color);
+    /* Farbe ändern, wenn darüber gehovert wird */
+}
+
+.social-icons {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons i {
+    font-size: 3.5rem;
+    color: var(--secondary-font-color);
+    padding: .8rem 4.4rem;
+    transition: color .5s;
+}
+
+.social-icons i:hover,
+.social-icons i:focus {
+    color: var(--white-color);
+}
+
+/* Add this style for the container */
+.legals-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.legals {
+    margin: 0 1.2rem;
+    /* Add some spacing between the links */
+}
+
+/* Rest of your existing styles for .legals and .legals a */
+.legals a {
+    text-decoration: none;
+    color: var(--white-color);
+    transition: color .5s;
+}
+
+.legals a:hover {
+    color: var(--secondary-font-color);
+}
+
+.spacing {
+    margin: 4rem;
+    /* Adjust the margin value as needed */
+}
+
+.copyright {
+    color: var(--body-font-color);
+    padding-bottom: 4rem;
+}
+
+
+
+
+/*                    IMPRESSUM                      */
+
+/* Add this style for the container */
+.impressum-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.impressum a {
+    text-decoration: none;
+    color: var(--white-color);
+    transition: color .5s;
+    display: inline;
+    /* Add this line to make the link visible by default */
+}
+
+/* Rest of your existing styles for .impressum and .impressum a */
+.impressum a {
+    text-decoration: none;
+    color: var(--secondary-font-color);
+    transition: color .5s;
+}
+
+/* Add some spacing between paragraphs */
+.impressum p {
+    margin-bottom: 1.2rem;
+}
+
+.impressum h4 {
+    font-size: 1.2rem;
+    color: var(--primary-font-color);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.impressum h3 {
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Style the section headers */
+.impressum h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-font-color);
+}
+
+.impressum h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Adjust the font size for the content */
+.impressum p {
+    font-size: 1.4rem;
+}
+
+/* Add a divider between sections */
+.impressum-section:not(:last-child) {
+    border-bottom: 0.1rem solid var(--body-font-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    /* Safari-spezifische Einstellung */
+}
+
+/* Add this style for the unordered list */
+.impressum ul {
+    list-style: disc;
+    margin-left: 2rem;
+    padding-left: 1rem;
+}
+
+/* Add this style for list items */
+.impressum li {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.footer-extra,
+.footer-extra2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid white;
+    /* Hinzufügen eines weißen Rahmens */
+    border-radius: 10px;
+    /* Hinzufügen von runden Ecken mit einer Radiusgröße von 10px */
+    padding: 2rem;
+    max-width: 80%;
+    margin: 0 auto;
+    max-width: 35rem;
+    margin-bottom: 2%;
+}
+
+.footer-extra-content,
+.footer-extra2-content {
+    padding: 20px;
+    /* Füge hier den gewünschten Abstand hinzu */
+}
+
+
+.highlight-text {
+    font-size: 3.5rem;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: var(--secondary-font-color);
+    /* Use the color you want */
+}
+
+
+
+
+/*                         MEDIA QUERIES                  */
+@media screen and (min-width: 900px) {
+    section {
+        padding: 5rem;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .nav-list {
+        position: initial;
+        width: initial;
+        min-height: initial;
+        background-color: transparent;
+        padding: 0;
+        justify-content: initial;
+        flex-direction: row;
+        transform: initial;
+        transition: initial;
+    }
+
+    .nav-item {
+        border: none;
+        margin: 0 2.4rem;
+    }
+
+    .nav-item:last-child {
+        margin-right: 0;
+    }
+
+    .nav-link {
+        font-size: 1.3rem;
+    }
+
+    .active {
+        position: relative;
+    }
+
+    .active::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--white-color);
+        left: 0;
+        bottom: -3px;
+    }
+
+    .sub-headline {
+        font-size: 6.8rem;
+    }
+
+    .headline {
+        font-size: 4.7rem;
+    }
+
+    h1.headline {
+        font-size: 5.5rem
+    }
+
+    .story-img {
+        max-width: 40rem;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+    }
+
+    .row>div {
+        flex: 1;
+    }
+
+    .padding-right {
+        padding-right: 7rem;
+    }
+
+    .footer__content {
+        overflow: hidden;
+    }
+
+    .footer__content-about {
+        max-width: 51.3rem;
+        margin: 0 auto 1.5rem;
+    }
+
+    .social-media {
+        width: 100%;
+    }
+
+    .social-icons i {
+        opacity: 1;
+    }
+
+    .bakers__container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 2rem;
+    }
+
+    .bakers__container img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .baker:last-child {
+        margin-bottom: 7rem;
+    }
+
+    .join-us .image {
+        display: block;
+    }
+
+    #offen {
+        font-size: 3.5rem;
+        /* Passe die Schriftgröße nach Bedarf an */
+        white-space: normal;
+        /* Stellt das normale Textverhalten wieder her */
+    }
+
+    .image-container img {
+        max-width: 50%;
+        /* Stellen Sie sicher, dass das Bild die Container-Breite nicht überschreitet */
+        height: auto;
+        /* Behalten Sie das Seitenverhältnis des Bildes bei */
+    }
+
+    .small-size-hero {
+        height: 20vh;
+        background-position: center 60%;
+    }
+
+    .footer-extra {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        border: 2px solid white;
+        /* Hinzufügen eines weißen Rahmens */
+        border-radius: 10px;
+        /* Hinzufügen von runden Ecken mit einer Radiusgröße von 10px */
+        padding: 2rem;
+        left: 8%;
+        top: 43%;
+        transform: translateY(-50%);
+        max-width: 35%;
+    }
+
+    .footer-extra2 {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        border: 2px solid white;
+        /* Hinzufügen eines weißen Rahmens */
+        border-radius: 10px;
+        /* Hinzufügen von runden Ecken mit einer Radiusgröße von 10px */
+        padding: 2rem;
+        right: 8%;
+        top: 43%;
+        transform: translateY(-50%);
+        max-width: 35%;
+    }
+
+    @media screen and (max-width: 1025px) {
+
+        .footer-extra,
+        .footer-extra2 {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 2px solid white;
+            /* Hinzufügen eines weißen Rahmens */
+            border-radius: 10px;
+            /* Hinzufügen von runden Ecken mit einer Radiusgröße von 10px */
+            padding: 2rem;
+            max-width: 35%;
+            margin: auto;
+            text-align: center;
+            left: 0%;
+            right: 0%;
+            margin-bottom: 2%;;
+
+        }
+
+        .footer-extra-content,
+        .footer-extra2-content {
+            padding: 20px;
+            /* Füge hier den gewünschten Abstand hinzu */
+        }
+    }
+
+}
+
+
+
+
+/*          ANIMATIONS           */
+
+@keyframes fadeUp {
+    0% {
+        transform: translateY(4rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleBigger {
+    0% {
+        transform: scale(2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(-360deg);
+    }
+}
+
+@keyframes showsUp {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+}
+
+/* Elemente in ihrer Startposition */
+.animate-left,
+.animate-right {
+    opacity: 0;
+    transform: translateX(0) translateY(0);
+    /* Zurücksetzen auf die ursprüngliche Position */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-top,
+.animate-bottom {
+    opacity: 0;
+    transform: translateX(0) translateY(0);
+    /* Zurücksetzen auf die ursprüngliche Position */
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.animate-left {
+    transform: translateX(-250px);
+    /* Startposition links außerhalb des sichtbaren Bereichs */
+}
+
+.animate-right {
+    transform: translateX(250px);
+    /* Startposition rechts außerhalb des sichtbaren Bereichs */
+}
+
+.animate-top {
+    transform: translateY(-180px);
+    /* Startposition oben außerhalb des sichtbaren Bereichs */
+}
+
+.animate-bottom {
+    transform: translateY(180px);
+    /* Startposition unten außerhalb des sichtbaren Bereichs */
+}
+
+/* CSS für die animierten Elemente, wenn sie sichtbar werden */
+.animate-visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    /* Zurücksetzen auf die ursprüngliche Position */
+}
