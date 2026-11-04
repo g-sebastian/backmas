@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('urlaub-hinweis').hidden = false;
             document.getElementById('oeffnungszeiten-normal').hidden = true;
         } else {
-            urlaubInfo.textContent = 'Betriebsurlaub: ' + zeitraum;
+            document.getElementById('urlaub-info-datum').textContent = zeitraum;
         }
     }
 
