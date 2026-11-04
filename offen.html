@@ -56,6 +56,16 @@
                 <p></p>
 
                 <section class="Öffnungszeiten">
+                    <!-- Betriebsurlaub: jedes Jahr die zwei mittleren Augustwochen (Montag zwischen 6. und 12. August bis Sonntag 13 Tage später).
+                         js/app.js berechnet die Daten automatisch:
+                         - normal: kleiner Hinweis (#urlaub-info) unter den Öffnungszeiten
+                         - während des Urlaubs: Öffnungszeiten (#oeffnungszeiten-normal) ausgeblendet, stattdessen Warnung (#urlaub-hinweis) -->
+                    <div id="urlaub-hinweis" class="urlaub-hinweis" hidden>
+                        <p class="urlaub-hinweis-titel"><i class="fas fa-exclamation-triangle"></i> Betriebsurlaub</p>
+                        <p id="urlaub-hinweis-text"></p>
+                    </div>
+
+                    <div id="oeffnungszeiten-normal">
                     <div class="container">
                         <div class="row">
                             <div class="description animate-left">
@@ -84,6 +94,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <p id="urlaub-info" class="urlaub-info">Betriebsurlaub: jedes Jahr Mitte August (2 Wochen)</p>
                     </div>
 
                     <div class="image-container">

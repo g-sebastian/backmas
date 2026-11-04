@@ -986,3 +986,42 @@ footer {
     transform: translateX(0) translateY(0);
     /* Zurücksetzen auf die ursprüngliche Position */
 }
+/* BETRIEBSURLAUB (offen.html) */
+[hidden] {
+    display: none !important;
+}
+
+/* normal: dezenter Hinweis unter den Öffnungszeiten */
+.urlaub-info {
+    font-size: 1.5rem;
+    color: var(--body-font-color);
+    letter-spacing: 1px;
+    margin: 0 0 3rem;
+}
+
+/* während des Urlaubs: Warnung statt Öffnungszeiten */
+.urlaub-hinweis {
+    max-width: 60rem;
+    margin: 3rem auto 5rem;
+    padding: 3rem 2rem;
+    border: 3px solid var(--secondary-font-color);
+    border-radius: 5px;
+    background-color: #fdf2f3;
+    text-align: center;
+}
+
+.urlaub-hinweis-titel {
+    font-family: var(--main-font);
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    color: var(--secondary-font-color);
+    margin-bottom: 1.5rem;
+}
+
+#urlaub-hinweis-text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--main-font-color-dark);
+}
