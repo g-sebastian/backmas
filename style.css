@@ -166,7 +166,7 @@ header {
     transform: translateX(0);
 }
 
-.show .nav::before {
+.show .navbar::before {
     opacity: 1;
     transform: scale(1);
 }
