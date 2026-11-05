@@ -24,18 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Betriebsurlaub (offen.html): die zwei mittleren Augustwochen,
-    // Start ist der Montag zwischen 6. und 12. August, Ende der Sonntag eine Woche danach
-    // (so liegt der Urlaub immer möglichst mittig um den 16. August).
+    // Betriebsurlaub (offen.html): drei Wochen (Montag bis Sonntag) im August,
+    // der 15. August liegt immer in der mittleren der drei Wochen.
+    // Start ist also der Montag eine Woche vor dem Montag der 15.-August-Woche
+    // (immer zwischen 2. und 8. August), Ende der Sonntag 20 Tage danach.
     // Nach Ende des Urlaubs wird automatisch der Termin im nächsten Jahr angezeigt.
     // Normal: dezenter Hinweis unter den Öffnungszeiten.
     // Während des Urlaubs: Öffnungszeiten ausblenden, stattdessen Warnhinweis zeigen.
     var urlaubInfo = document.getElementById('urlaub-info');
     if (urlaubInfo) {
         var urlaub = function (jahr) {
-            var start = new Date(jahr, 7, 6);                          // 6. August
-            start.setDate(6 + ((8 - start.getDay()) % 7));             // nächster Montag ab dem 6.
-            var ende = new Date(jahr, 7, start.getDate() + 13);        // Sonntag 2 Wochen später
+            var tag15 = new Date(jahr, 7, 15);                         // 15. August
+            var seitMontag = (tag15.getDay() + 6) % 7;                 // Tage seit Montag dieser Woche (Mo = 0 … So = 6)
+            var start = new Date(jahr, 7, 15 - seitMontag - 7);        // Montag der Woche davor
+            var ende = new Date(jahr, 7, start.getDate() + 20);        // Sonntag 3 Wochen später
             return { start: start, ende: ende };
         };
         var heute = new Date();
