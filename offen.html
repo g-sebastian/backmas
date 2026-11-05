@@ -57,12 +57,14 @@
                 <p></p>
 
                 <section class="Öffnungszeiten">
-                    <!-- Betriebsurlaub: jedes Jahr drei Wochen im August (Montag bis Sonntag), der 15. August liegt immer in der mittleren Woche.
-                         js/app.js berechnet die Daten automatisch:
-                         - normal: kleiner Hinweis (#urlaub-info) unter den Öffnungszeiten
-                         - während des Urlaubs: Öffnungszeiten (#oeffnungszeiten-normal) ausgeblendet, stattdessen Warnung (#urlaub-hinweis) -->
+                    <!-- Schließzeiten, js/app.js berechnet die Daten automatisch:
+                         - Betriebsurlaub: drei Wochen im August (Montag bis Sonntag), der 15. August liegt in der mittleren Woche
+                         - Verschnaufpause: Neujahr bis Heilige Drei Könige (1.–6. Januar)
+                         Angezeigt wird jeweils der kürzeste Zeitraum (ohne Sonntag, Montag und Feiertage, da sowieso geschlossen).
+                         - normal: kleine Boxen (#schliesszeiten) unter den Öffnungszeiten, die nächste zuerst
+                         - während einer Schließzeit: Öffnungszeiten (#oeffnungszeiten-normal) ausgeblendet, stattdessen Warnung (#urlaub-hinweis) -->
                     <div id="urlaub-hinweis" class="urlaub-hinweis" hidden>
-                        <p class="urlaub-hinweis-titel"><i class="fas fa-exclamation-triangle"></i> Betriebsurlaub</p>
+                        <p class="urlaub-hinweis-titel"><i class="fas fa-exclamation-triangle"></i> <span id="urlaub-hinweis-titel">Betriebsurlaub</span></p>
                         <p id="urlaub-hinweis-text"></p>
                     </div>
 
@@ -97,11 +99,20 @@
                         </div>
                     </div>
 
-                    <div id="urlaub-info" class="urlaub-info animate-bottom">
-                        <i class="fas fa-calendar-days urlaub-info-icon"></i>
-                        <div>
-                            <p class="urlaub-info-titel">Betriebsurlaub</p>
-                            <p id="urlaub-info-datum" class="urlaub-info-datum">jedes Jahr Mitte August</p>
+                    <div id="schliesszeiten" class="schliesszeiten">
+                        <div id="info-winter" class="urlaub-info animate-bottom">
+                            <i class="fas fa-calendar-days urlaub-info-icon"></i>
+                            <div>
+                                <p class="urlaub-info-titel">Kurze Verschnaufpause</p>
+                                <p class="urlaub-info-datum">Anfang Januar</p>
+                            </div>
+                        </div>
+                        <div id="info-sommer" class="urlaub-info animate-bottom">
+                            <i class="fas fa-calendar-days urlaub-info-icon"></i>
+                            <div>
+                                <p class="urlaub-info-titel">Betriebsurlaub</p>
+                                <p class="urlaub-info-datum">im August</p>
+                            </div>
                         </div>
                     </div>
                     </div>
